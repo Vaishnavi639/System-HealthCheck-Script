@@ -1,175 +1,138 @@
-# System Health Check Script
+# System Health Check Shell Script
 
-## Description
-This is a menu-driven shell script designed to perform essential system health checks. The tool provides an easy-to-use interface for monitoring and reporting critical system metrics. It includes options to:
+## Project Description
+This project is a **menu-driven shell script** designed to perform essential system health checks on a Linux-based system. The script allows users to:
 
-- Check Disk Usage
-- Monitor Running Services
-- Assess Memory Usage
-- Evaluate CPU Usage
-- Send a Comprehensive System Health Report via Email Every Four Hours
+1. Check Disk Usage
+2. Monitor Running Services
+3. Assess Memory Usage
+4. Evaluate CPU Usage
+5. Generate a Comprehensive Report
 
-The script is ideal for system administrators and IT professionals who want a straightforward solution to monitor and maintain system performance.
+The generated report is saved to a file and can be reviewed later. Additionally, users can set up a cron job to automate running the script at specific intervals, such as every day at 9 AM.
 
 ---
 
 ## Features
-
-1. **Check Disk Usage:**
-   - Displays the available and used disk space for all mounted file systems.
-   - Helps identify partitions that are low on storage.
-
-2. **Monitor Running Services:**
-   - Lists all active services.
-   - Ensures critical services are running smoothly.
-
-3. **Assess Memory Usage:**
-   - Displays the current memory utilization.
-   - Provides details about used, free, and available memory.
-
-4. **Evaluate CPU Usage:**
-   - Monitors CPU load in real-time.
-   - Helps in identifying performance bottlenecks.
-
-5. **Send Comprehensive Report:**
-   - Automatically generates and emails a detailed system health report every four hours.
-   - Includes disk, memory, CPU statistics, and running services.
+- **Interactive Menu**: Users can select different health-check options interactively.
+- **Comprehensive Report**: The script generates a detailed report containing disk usage, memory statistics, CPU performance, and running services.
+- **Automated Scheduling**: Supports setting up cron jobs to execute the script at regular intervals, ensuring timely monitoring without manual intervention.
 
 ---
 
-## Applications and Use Cases
+## Applications
+This script is highly useful in real-time scenarios, such as:
 
-This script can be applied in various scenarios, including:
+1. **System Administration**:
+   - Quickly monitor system health and detect issues before they escalate.
+   - Ensure services are running smoothly.
 
-1. **System Monitoring:**
-   - Regularly monitor disk, memory, and CPU usage to ensure optimal system performance. For instance, an IT administrator in a data center can use this to track server metrics daily, identifying any anomalies before they escalate into critical issues.
+2. **Resource Monitoring**:
+   - Track CPU and memory usage to identify potential bottlenecks.
 
-2. **Proactive Maintenance:**
-   - Detect potential performance issues, such as low disk space or high CPU usage, before they impact operations. For example, a business running an e-commerce site can use this tool to prevent downtime by resolving resource bottlenecks in advance.
+3. **Scheduled Reporting**:
+   - Automate system health reporting via cron jobs, ensuring regular updates for system administrators.
 
-3. **Service Management:**
-   - Monitor critical services to ensure they are running without interruptions. For instance, a DevOps engineer can use this to verify the uptime of web servers or database services in production environments.
-
-4. **Automated Reporting with Cron Jobs:**
-   - Utilize a cron job to automate the sending of comprehensive system health reports at regular intervals (e.g., every four hours). For example, an organization can use this feature to ensure administrators are consistently updated on system health without manual intervention, enabling quicker decision-making and response.
-
-5. **Small-to-Medium Enterprises (SMEs):**
-   - Provide a cost-effective solution for SMEs without dedicated monitoring tools. For example, a startup can implement this script to maintain system health without investing in expensive monitoring solutions like Datadog or New Relic.
+4. **File-based Analysis**:
+   - Access historical data via the generated report files for deeper analysis.
 
 ---
 
 ## Prerequisites
-
-- A Linux-based operating system.
-- Essential shell utilities such as `df`, `free`, `top`, and `systemctl` (commonly available on most Linux distributions).
-- Access to a mail server for sending email reports (e.g., `mailx` or `sendmail` configured on the system).
+- A Linux-based operating system (e.g., Ubuntu).
+- Bash shell installed (default on most Linux systems).
 
 ---
 
-## Installation
+## Installation and Setup
 
-1. Clone the repository to your local system:
+1. Clone the repository:
    ```bash
-   git clone https://github.com/<your-username>/<repo-name>.git
+   git clone https://github.com/your-username/system-health-check.git
+   cd system-health-check
    ```
 
-2. Navigate to the project directory:
-   ```bash
-   cd <repo-name>
-   ```
-
-3. Make the script executable:
+2. Make the script executable:
    ```bash
    chmod +x system_health_check.sh
    ```
 
----
+3. Run the script:
+   ```bash
+   ./system_health_check.sh
+   ```
 
-## Usage
-
-Run the script with:
-```bash
-./system_health_check.sh
-```
-
-Upon execution, the script displays a menu with the following options:
-
-1. **Check Disk Usage:**
-   - Type `1` and press Enter.
-
-2. **Monitor Running Services:**
-   - Type `2` and press Enter.
-
-3. **Assess Memory Usage:**
-   - Type `3` and press Enter.
-
-4. **Evaluate CPU Usage:**
-   - Type `4` and press Enter.
-
-5. **Send Comprehensive Report via Email:**
-   - Type `5` and press Enter.
-
-6. **Exit:**
-   - Type `0` and press Enter to exit the script.
+4. To automate running the script, set up a cron job (explained below).
 
 ---
 
-## Configuration
+## Cron Job Setup
+To schedule the script to run at a specific time (e.g., 9 AM every day):
 
-### Email Setup
-To enable the email reporting functionality, ensure your mail server is configured correctly. Update the email settings in the script by editing the variables:
+1. Open the crontab editor:
+   ```bash
+   crontab -e
+   ```
 
-```bash
-EMAIL_ADDRESS="your_email@example.com"
-EMAIL_PASSWORD="your_email_password"
-RECEIVER_EMAIL="receiver_email@example.com"
-```
+2. Add the following line to schedule the script at 9 AM daily:
+   ```plaintext
+   0 9 * * * /path/to/system_health_check.sh > /dev/null 2>&1
+   ```
 
-**Note:** Ensure your system supports email sending utilities like `mailx` or `sendmail`.
-
-### Cron Job Setup
-To schedule the email according to the application of the organization or the user the report mail can be sent at fixed timings using a crontab to ensure proper and continuous monitoring.
-
----
-
-## Sample Output
-
-### Disk Usage
-```
-Filesystem      Size  Used Avail Use% Mounted on
-/dev/sda1       50G   20G   30G  40% /
-```
-
-### Memory Usage
-```
-Total: 8GB
-Used: 4GB
-Free: 3GB
-Available: 5GB
-```
-
-### CPU Usage
-```
-CPU Load: 15%
-```
-
-### Email Report
-A sample email report includes:
-- Disk Usage
-- Memory Usage
-- CPU Statistics
-- Running Services
+3. Save and exit the editor. The cron job is now set up.
 
 ---
 
-## Future Enhancements
+## Output Reports
+- Each time the report option is selected, a new report file is generated in the specified directory (default: `/path/to/reports`).
+- The report includes details on disk usage, memory statistics, CPU performance, and running services.
 
-- Add a graphical user interface (GUI).
-- Include support for additional system metrics (e.g., network usage).
-- Integrate with monitoring tools like Prometheus and Grafana.
+Example report file name:
+```plaintext
+health_report_YYYYMMDDHHMMSS.log
+```
+
 ---
 
-## Contact
+## Future Scope
 
-For any questions or suggestions, feel free to reach out at:
-- **GitHub:** https://github.com/Vaishnavi639
+1. **Email Notifications**:
+   - Extend the script to automatically send the generated reports to a specified email address using an SMTP service.
+
+2. **Enhanced Visualizations**:
+   - Include graphs or charts for system metrics like CPU and memory usage.
+
+3. **Real-Time Monitoring**:
+   - Integrate with monitoring tools to display live statistics.
+
+---
+
+## Collaborations
+This project is open to collaborations! Contributions can include:
+- Implementing the email feature for report delivery.
+- Adding support for more system health checks (e.g., network monitoring).
+- Enhancing the script's error handling and logging capabilities.
+
+Feel free to fork the repository and submit pull requests.
+
+---
+
+## How to Contribute
+1. Fork the repository.
+2. Create a feature branch:
+   ```bash
+   git checkout -b feature-name
+   ```
+3. Commit your changes and push to your fork.
+4. Submit a pull request to the main repository.
+
+---
+
+## Author
+- **Your Name** Vaishnavi Pangare
+- **GitHub**: https://github.com/Vaishnavi639
+
+---
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
