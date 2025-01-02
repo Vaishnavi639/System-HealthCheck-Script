@@ -48,18 +48,18 @@ This script is highly useful in real-time scenarios, such as:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/system-health-check.git
+   git clone https://github.com/Vaishnavi639/System-HealthCheck-Script.git
    cd system-health-check
    ```
 
 2. Make the script executable:
    ```bash
-   chmod +x system_health_check.sh
+   chmod +x serverreport.sh
    ```
 
 3. Run the script:
    ```bash
-   ./system_health_check.sh
+   ./serverreport.sh
    ```
 
 4. To automate running the script, set up a cron job (explained below).
@@ -76,7 +76,7 @@ To schedule the script to run at a specific time (e.g., 9 AM every day):
 
 2. Add the following line to schedule the script at 9 AM daily:
    ```plaintext
-   0 9 * * * /path/to/system_health_check.sh > /dev/null 2>&1
+   0 9 * * * /path/to/serverreport.sh > /dev/null 2>&1
    ```
 
 3. Save and exit the editor. The cron job is now set up.
