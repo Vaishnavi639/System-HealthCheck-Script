@@ -1,0 +1,2 @@
+0 9 * * * echo 5 | home/vaishnavi/Desktop/system-report/serverreport.sh > /dev/null 2>&1
+
