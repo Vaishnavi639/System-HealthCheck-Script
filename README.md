@@ -1,7 +1,7 @@
 # System Health Check Shell Script
 
 ## Project Description
-This project is a **menu-driven shell script** designed to perform essential system health checks on a Linux-based system. The script allows users to:
+This project is a **Menu-driven shell script** designed to perform essential system health checks on a Linux-based system. The script allows users to:
 
 1. Check Disk Usage
 2. Monitor Running Services
