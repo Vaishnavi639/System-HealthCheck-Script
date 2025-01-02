@@ -1,6 +1,21 @@
 #!/bin/bash
+################################################################################################################################################################################################
 
-# Define the directory for reports
+#Author:- Vaishnavi Pangare
+#Date :- 2|1|2025
+#Version :- v1
+#################################################################################################################################################################################################
+
+#This Shel Script is writing for creating a menu based server reporting system which monitors :
+#1. Disk Usage
+#2. Running services
+#3. Memory usage
+#4. CPU usage
+#5. Creates a report
+
+##################################################################################################################################################################################################
+
+# Define the directory for report creation
 REPORT_DIR="/home/vaishnavi/Desktop/system-report"
 mkdir -p "$REPORT_DIR" # Ensure the directory exists
 
