@@ -71,7 +71,7 @@ To schedule the script to run at a specific time (e.g., 9 AM every day):
 
 1. Open the crontab editor:
    ```bash
-   crontab -e
+   crontab -eu username
    ```
 
 2. Add the following line to schedule the script at 9 AM daily:
